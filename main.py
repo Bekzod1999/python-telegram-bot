@@ -6,6 +6,9 @@ bot = telegram.Bot(token=TOKEN)
 imgNet = 'https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg'
 img = open('allDocument\eagle.jpg', 'rb')
 document = open('allDocument\english.pdf', 'rb')
+video = open('allDocument\m.mp4', 'rb')
+videoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
+
 
 new_id = -1
 while True:
@@ -13,7 +16,12 @@ while True:
     chat_id = update.message.chat.id
     message_id = update.message.message_id
     text = update.message.text.lower()
-    
+
+    #sendVideo
+    if new_id != message_id and text == 'send video':
+        bot.sendVideo(chat_id, video=videoUrl)
+        new_id = message_id
+
     # sendDocument
     if new_id != message_id and text == 'send document':
         bot.sendDocument(chat_id, document = document)
