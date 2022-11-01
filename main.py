@@ -3,17 +3,23 @@ import telegram
 TOKEN='5749805943:AAHm17X_M1Sof1MZBCGT-cZE3dGYGxeSPfw'
 bot = telegram.Bot(token=TOKEN)
 
+imgNet = 'https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg'
+img = open('eagle.jpg', 'rb')
+
 new_id = -1
 while True:
     update = bot.getUpdates()[-1]
     chat_id = update.message.chat.id
     message_id = update.message.message_id
     text = update.message.text.lower()
+    
+    #sendDice
+    if new_id != message_id and text == 'send dice':
+        bot.sendDice(chat_id)
+        new_id = message_id
 
-    # sendPhoto
-    imgNet = 'https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg'
-    img = open('eagle.jpg', 'rb')
-    if new_id != message_id and text == 'send photo':
+    #sendPhoto
+    elif new_id != message_id and text == 'send photo':
         bot.sendPhoto(chat_id, photo = img)
         new_id = message_id
 
