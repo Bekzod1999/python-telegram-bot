@@ -1,5 +1,8 @@
 import telegram
-TOKEN='5749805943:AAHm17X_M1Sof1MZBCGT-cZE3dGYGxeSPfw'
+import os 
+
+TOKEN=os.environ['TOKEN']
+
 bot = telegram.Bot(token=TOKEN)
 
 imgUrl = 'https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg'
